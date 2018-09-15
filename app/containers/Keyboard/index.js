@@ -17,7 +17,11 @@ import Key from './Key';
 import reducer from './reducer';
 import makeSelectKeyboard, { makeSelectKeyWidth } from './selectors';
 
-const KeyboardWrapper = styled.div``;
+const KeyboardWrapper = styled.div`
+  bottom: 0;
+  position: absolute;
+  height: ${({ theme }) => theme.keyboardHeight}vh;
+`;
 
 /* eslint-disable react/prefer-stateless-function */
 export class Keyboard extends React.Component {
