@@ -16,7 +16,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 // import 'sanitize.css/sanitize.css';
-import 'bootswatch/dist/sketchy/bootstrap.min.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
 
 // Import root app
 import App from 'containers/App';
