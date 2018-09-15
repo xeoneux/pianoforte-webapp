@@ -5,78 +5,76 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import styled, { ThemeProvider } from 'styled-components';
 
+import { playerTheme } from 'tools/theme';
 import injectReducer from 'utils/injectReducer';
-import makeSelectPlayerView from './selectors';
+
+import Piano from './Piano';
 import reducer from './reducer';
+import makeSelectPlayerView, { makeSelectKeys } from './selectors';
+
+const PlayerViewWrapper = styled.div`
+  width: 100%;
+  position: absolute;
+  transition: top 0.3s;
+  top: ${props => (props.opened ? 0 : 90)}%;
+`;
 
 /* eslint-disable react/prefer-stateless-function */
 export class PlayerView extends React.Component {
-  render() {
-    return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          Navbar
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+  state = { opened: false };
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="/">
-                Home <span className="sr-only">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                Link
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" href="/">
-                Disabled
-              </a>
-            </li>
-          </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              type="submit"
-              className="btn btn-outline-success my-2 my-sm-0"
-            >
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
+  render() {
+    console.log(this.props.keys);
+    return (
+      <ThemeProvider theme={playerTheme}>
+        <PlayerViewWrapper
+          opened={this.state.opened}
+          onClick={() => this.setState({ opened: !this.state.opened })}
+        >
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="/">
+              Navbar
+            </a>
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">
+                    Home <span className="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    Link
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link disabled" href="/">
+                    Disabled
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <Piano keys={this.props.keys} />
+        </PlayerViewWrapper>
+      </ThemeProvider>
     );
   }
 }
 
 PlayerView.propTypes = {
+  keys: PropTypes.array.isRequired,
   // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  keys: makeSelectKeys(),
   playerview: makeSelectPlayerView(),
 });
 

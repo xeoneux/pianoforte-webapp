@@ -6,6 +6,7 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -19,11 +20,18 @@ import makeSelectAppPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
+const AppPageWrapper = styled.div`
+  /* width: 100vw; */
+  /* height: 100vh; */
+  /* position: relative; */
+  /* overflow: hidden; */
+`;
+
 /* eslint-disable react/prefer-stateless-function */
 export class AppPage extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <AppPageWrapper>
         <Helmet>
           <title>AppPage</title>
           <meta name="description" content="Description of AppPage" />
@@ -79,7 +87,7 @@ export class AppPage extends React.Component {
           </div>
         </nav>
         <PlayerView />
-      </React.Fragment>
+      </AppPageWrapper>
     );
   }
 }
