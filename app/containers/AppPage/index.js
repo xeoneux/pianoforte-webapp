@@ -21,10 +21,10 @@ import reducer from './reducer';
 import saga from './saga';
 
 const AppPageWrapper = styled.div`
-  /* width: 100vw; */
-  /* height: 100vh; */
-  /* position: relative; */
-  /* overflow: hidden; */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 `;
 
 /* eslint-disable react/prefer-stateless-function */

@@ -6,17 +6,17 @@
 
 import React from 'react';
 import { compose } from 'redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { playerTheme } from 'tools/theme';
+import Keyboard from 'containers/Keyboard';
 import injectReducer from 'utils/injectReducer';
 
-import Piano from './Piano';
 import reducer from './reducer';
-import makeSelectPlayerView, { makeSelectKeys } from './selectors';
+import makeSelectPlayerView from './selectors';
 
 const PlayerViewWrapper = styled.div`
   width: 100%;
@@ -30,7 +30,6 @@ export class PlayerView extends React.Component {
   state = { opened: false };
 
   render() {
-    console.log(this.props.keys);
     return (
       <ThemeProvider theme={playerTheme}>
         <PlayerViewWrapper
@@ -61,7 +60,7 @@ export class PlayerView extends React.Component {
               </ul>
             </div>
           </nav>
-          <Piano keys={this.props.keys} />
+          <Keyboard />
         </PlayerViewWrapper>
       </ThemeProvider>
     );
@@ -69,12 +68,10 @@ export class PlayerView extends React.Component {
 }
 
 PlayerView.propTypes = {
-  keys: PropTypes.array.isRequired,
   // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  keys: makeSelectKeys(),
   playerview: makeSelectPlayerView(),
 });
 

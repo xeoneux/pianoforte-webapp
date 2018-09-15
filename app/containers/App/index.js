@@ -29,7 +29,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
-    <div>
+    <React.Fragment>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
@@ -44,6 +44,6 @@ export default function App() {
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/* <Footer /> */}
-    </div>
+    </React.Fragment>
   );
 }

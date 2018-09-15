@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-const keyWidth = 1;
-const keyHeight = 25;
-
-const PianoKey = styled.div`
+const Key = styled.div`
   cursor: pointer;
   position: absolute;
   box-sizing: border-box;
@@ -14,15 +11,17 @@ const PianoKey = styled.div`
   transform: translate(0, 0) rotateX(0);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   z-index: ${({ type }) => (type === 'white' ? 90 : 100)};
-  width: ${({ type, theme }) =>
+  width: ${({ type, theme, keyWidth }) =>
     type === 'white' ? keyWidth : keyWidth * theme.crossWidthRatio}vw;
   height: ${({ type, theme }) =>
-    type === 'white' ? keyHeight : keyHeight * theme.crossWidthRatio}vh;
+    type === 'white'
+      ? theme.keyboardHeight
+      : theme.keyboardHeight * theme.crossWidthRatio}vh;
   background: ${({ type, active }) => {
     if (active) return type === 'white' ? 'black' : 'white';
     return type === 'white' ? 'white' : 'black';
   }};
-  left: ${({ type, index, position, theme }) =>
+  left: ${({ type, index, theme, keyWidth, position }) =>
     type === 'white'
       ? position * keyWidth
       : (index - position - 1) * keyWidth +
@@ -45,4 +44,4 @@ const PianoKey = styled.div`
 // );
 // `
 
-export default PianoKey;
+export default Key;
