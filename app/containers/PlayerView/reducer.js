@@ -4,15 +4,19 @@
  *
  */
 
-import { fromJS } from 'immutable';
-import { DEFAULT_ACTION } from './constants';
+import { Map } from 'immutable';
+import { parseArrayBuffer } from 'midi-json-parser';
 
-export const initialState = fromJS({});
+import { LOAD_MIDI } from './constants';
+
+export const initialState = Map({});
 
 function playerViewReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case LOAD_MIDI: {
+      parseArrayBuffer(action.midi);
       return state;
+    }
     default:
       return state;
   }

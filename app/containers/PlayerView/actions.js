@@ -4,10 +4,11 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import { LOAD_MIDI } from './constants';
 
-export function defaultAction() {
+export function loadMidi(midi) {
   return {
-    type: DEFAULT_ACTION,
+    midi,
+    type: LOAD_MIDI,
   };
 }

@@ -9,6 +9,7 @@
 import 'babel-polyfill';
 
 // Import all the third party stuff
+import debug from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -16,7 +17,6 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 // import 'sanitize.css/sanitize.css';
-import 'bootswatch/dist/flatly/bootstrap.min.css';
 
 // Import root app
 import App from 'containers/App';
@@ -98,4 +98,6 @@ if (!window.Intl) {
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+} else {
+  debug.enable(['app-page:*'].join(','));
 }

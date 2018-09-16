@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/PlayerView/DEFAULT_ACTION';
+export const LOAD_MIDI = 'app/PlayerView/LOAD_MIDI';
