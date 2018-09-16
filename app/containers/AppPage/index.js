@@ -7,7 +7,7 @@
 import debug from 'debug';
 import React from 'react';
 import { compose } from 'redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -17,6 +17,7 @@ import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import PlayerView from 'containers/PlayerView/Loadable';
+import { loadMidi } from 'containers/PlayerView/actions';
 
 import saga from './saga';
 import reducer from './reducer';
@@ -36,9 +37,9 @@ export class AppPage extends React.Component {
   onDrop = files => {
     if (files.length) {
       const reader = new FileReader();
-      reader.onload = () => log(reader.result);
       reader.onerror = () => log('file reading has failed');
       reader.onabort = () => log('file reading was aborted');
+      reader.onload = () => this.props.loadMidi(reader.result);
 
       reader.readAsArrayBuffer(files[0]);
     }
@@ -108,7 +109,7 @@ export class AppPage extends React.Component {
 }
 
 AppPage.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  loadMidi: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -117,7 +118,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    loadMidi: midi => dispatch(loadMidi(midi)),
   };
 }
 

@@ -13,10 +13,9 @@ export const initialState = Map({});
 
 function playerViewReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_MIDI: {
-      parseArrayBuffer(action.midi);
-      return state;
-    }
+    case LOAD_MIDI:
+      return state.set('midiData', parseArrayBuffer(action.midi));
+
     default:
       return state;
   }

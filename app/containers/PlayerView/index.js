@@ -13,10 +13,11 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import { playerTheme } from 'tools/theme';
 import Keyboard from 'containers/Keyboard';
+import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-
-import reducer from './reducer';
 import makeSelectPlayerView from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 
 const PlayerViewOuter = styled.div`
   width: 100%;
@@ -96,8 +97,10 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'playerView', reducer });
+const withSaga = injectSaga({ key: 'playerView', saga });
 
 export default compose(
   withReducer,
+  withSaga,
   withConnect,
 )(PlayerView);
