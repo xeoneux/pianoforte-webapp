@@ -25,6 +25,10 @@ const KeyboardWrapper = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class Keyboard extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
       <KeyboardWrapper>

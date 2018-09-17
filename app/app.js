@@ -99,5 +99,5 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 } else {
-  debug.enable(['app-page:*'].join(','));
+  debug.enable(['app-page:*', 'player-view:*'].join(','));
 }
