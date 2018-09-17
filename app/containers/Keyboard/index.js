@@ -19,6 +19,7 @@ import makeSelectKeyboard, { makeSelectKeyWidth } from './selectors';
 
 const KeyboardWrapper = styled.div`
   bottom: 0;
+  width: 100%;
   position: absolute;
   height: ${({ theme }) => theme.keyboardHeight}vh;
 `;
