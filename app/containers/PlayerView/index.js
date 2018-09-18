@@ -19,7 +19,7 @@ import injectReducer from 'utils/injectReducer';
 
 import saga from './saga';
 import reducer from './reducer';
-import makeSelectPlayerView from './selectors';
+import makeSelectPlayerView, { makeSelectNotes } from './selectors';
 
 const PlayerViewOuter = styled.div`
   width: 100%;
@@ -44,6 +44,7 @@ const Frames = styled.div`
   width: 100%;
   height: 60vh;
   overflow: hidden;
+  position: relative;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -84,9 +85,9 @@ export class PlayerView extends React.Component {
               </nav>
             </BarWrapper>
             <Frames>
-              <Frame />
-              <Frame />
-              <Frame />
+              <Frame bg="red" />
+              {/* <Frame bg="green" /> */}
+              {/* <Frame bg="blue" /> */}
             </Frames>
             <Keyboard />
           </PlayerViewInner>
@@ -97,10 +98,12 @@ export class PlayerView extends React.Component {
 }
 
 PlayerView.propTypes = {
+  // measureData: PropTypes.object,
   // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  notes: makeSelectNotes(),
   playerview: makeSelectPlayerView(),
 });
 

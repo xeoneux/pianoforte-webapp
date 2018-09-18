@@ -11,6 +11,12 @@ const selectPlayerViewDomain = state => state.get('playerView', initialState);
  * Other specific selectors
  */
 
+const makeSelectNotes = () =>
+  createSelector(
+    selectPlayerViewDomain,
+    substate => substate.midiData && substate.midiData.notes,
+  );
+
 /**
  * Default selector used by PlayerView
  */
@@ -19,4 +25,4 @@ const makeSelectPlayerView = () =>
   createSelector(selectPlayerViewDomain, substate => substate.toJS());
 
 export default makeSelectPlayerView;
-export { selectPlayerViewDomain };
+export { selectPlayerViewDomain, makeSelectNotes };
