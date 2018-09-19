@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { compose } from 'redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled, { ThemeProvider } from 'styled-components';
@@ -16,6 +16,11 @@ import { playerTheme } from 'tools/theme';
 import injectSaga from 'utils/injectSaga';
 import Keyboard from 'containers/Keyboard';
 import injectReducer from 'utils/injectReducer';
+import {
+  makeSelectInitC,
+  makeSelectKeyWidth,
+  makeSelectLines,
+} from 'containers/Keyboard/selectors';
 
 import saga from './saga';
 import reducer from './reducer';
@@ -52,6 +57,8 @@ export class PlayerView extends React.Component {
   state = { opened: true };
 
   render() {
+    const { initC, lines, keyWidth } = this.props;
+
     return (
       <ThemeProvider theme={playerTheme}>
         <PlayerViewOuter opened={this.state.opened}>
@@ -85,9 +92,7 @@ export class PlayerView extends React.Component {
               </nav>
             </BarWrapper>
             <Frames>
-              <Frame bg="red" />
-              {/* <Frame bg="green" /> */}
-              {/* <Frame bg="blue" /> */}
+              <Frame initC={initC} lines={lines} keyWidth={keyWidth} />
             </Frames>
             <Keyboard />
           </PlayerViewInner>
@@ -98,12 +103,18 @@ export class PlayerView extends React.Component {
 }
 
 PlayerView.propTypes = {
+  lines: PropTypes.any,
+  initC: PropTypes.number,
+  keyWidth: PropTypes.number,
   // measureData: PropTypes.object,
   // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   notes: makeSelectNotes(),
+  initC: makeSelectInitC(),
+  lines: makeSelectLines(),
+  keyWidth: makeSelectKeyWidth(),
   playerview: makeSelectPlayerView(),
 });
 
