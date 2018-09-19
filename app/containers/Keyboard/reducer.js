@@ -39,7 +39,7 @@ export const generateKeys = keyboardType => {
   return keys;
 };
 
-const defaultKeyboard = keyboardTypes.$76;
+const defaultKeyboard = keyboardTypes.$88;
 
 export const initialState = Map({
   type: defaultKeyboard,

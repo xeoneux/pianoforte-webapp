@@ -11,38 +11,36 @@ import styled from 'styled-components';
 const BoardWrapper = styled.div`
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   background-color: #303030;
 `;
 
 const Line = styled.div`
+  height: 100%;
   margin-left: -1px;
   position: absolute;
-  height: ${({ theme }) => theme.singleFrameHeight}vh;
-  border-left: ${({ thick }) => (thick ? 2 : 1)}px solid #5a5a5a;
-  left: ${({ thick, count, initC, keyWidth }) =>
-    thick
-      ? initC * keyWidth + count * 7 * keyWidth
-      : initC * keyWidth + (count * 7 * keyWidth + 3 * keyWidth)}vw;
+  left: ${({ left }) => left}vw;
+  border-left: ${({ width }) => width}px solid #5a5a5a;
 `;
 
-function Board({ initC, lines, keyWidth }) {
+function Board({ boardLines }) {
   return (
     <BoardWrapper>
-      {[...Array(lines.pre).keys()].map((v, i) => (
-        <Line thick key={v} count={i} initC={initC} keyWidth={keyWidth} />
-      ))}
-      {[...Array(lines.post).keys()].map((v, i) => (
-        <Line key={v} count={i} initC={initC} keyWidth={keyWidth} />
-      ))}
+      {boardLines.map(line => <Line key={line.key} {...line} />)}
     </BoardWrapper>
   );
 }
 
+export const boardLinesPropType = PropTypes.arrayOf(
+  PropTypes.shape({
+    key: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }),
+).isRequired;
+
 Board.propTypes = {
-  lines: PropTypes.object,
-  initC: PropTypes.number,
-  keyWidth: PropTypes.number,
+  boardLines: boardLinesPropType,
 };
 
 export default Board;

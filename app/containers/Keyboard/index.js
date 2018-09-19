@@ -15,7 +15,7 @@ import injectReducer from 'utils/injectReducer';
 
 import Key from './Key';
 import reducer from './reducer';
-import makeSelectKeyboard, { makeSelectKeyWidth } from './selectors';
+import makeSelectKeyboard, { selectKeyWidth } from './selectors';
 
 const KeyboardWrapper = styled.div`
   bottom: 0;
@@ -54,7 +54,7 @@ Keyboard.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  keyWidth: makeSelectKeyWidth(),
+  keyWidth: selectKeyWidth,
   keyboard: makeSelectKeyboard(),
 });
 

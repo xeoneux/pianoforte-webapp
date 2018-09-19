@@ -15,20 +15,15 @@ const selectWhiteKeys = createSelector(selectKeyboardDomain, substate =>
   substate.get('keys').filter(key => key.type === 'white'),
 );
 
-const makeSelectInitC = () =>
-  createSelector(selectKeyboardDomain, substate => {
-    const initC = substate.get('keys').find(key => key.name === 'C');
-    return initC ? initC.position : 0;
-  });
+const selectKeyWidth = createSelector(
+  selectWhiteKeys,
+  whiteKeys => 100 / whiteKeys.length,
+);
 
-const makeSelectLines = () =>
-  createSelector(selectWhiteKeys, whiteKeys => ({
-    pre: whiteKeys.filter(key => key.name === 'C').length,
-    post: whiteKeys.filter(key => key.name === 'F').length,
-  }));
-
-const makeSelectKeyWidth = () =>
-  createSelector(selectWhiteKeys, whiteKeys => 100 / whiteKeys.length);
+const selectInitC = createSelector(
+  selectWhiteKeys,
+  whiteKeys => whiteKeys.find(key => key.name === 'C').position,
+);
 
 /**
  * Default selector used by Keyboard
@@ -38,9 +33,4 @@ const makeSelectKeyboard = () =>
   createSelector(selectKeyboardDomain, substate => substate.toJS());
 
 export default makeSelectKeyboard;
-export {
-  makeSelectInitC,
-  makeSelectLines,
-  makeSelectKeyWidth,
-  selectKeyboardDomain,
-};
+export { selectInitC, selectKeyWidth, selectWhiteKeys, selectKeyboardDomain };

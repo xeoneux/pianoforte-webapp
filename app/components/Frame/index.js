@@ -47,7 +47,7 @@ class Frame extends React.Component {
           onPoseComplete={() => log('pose updated')}
         >
           <Board {...this.props} />
-          <Measure
+          {/* <Measure
             keyWidth={this.props.keyWidth}
             tracks={
               this.props.measures &&
@@ -55,7 +55,7 @@ class Frame extends React.Component {
                 track.filter(note => note.measure.index === 0),
               )
             }
-          />
+          /> */}
           asdf
         </FrameOuter>
         <FrameOuter
@@ -64,7 +64,7 @@ class Frame extends React.Component {
           pose={this.state.pose}
           onPoseComplete={() => log('pose updated')}
         >
-          <Board {...this.props} />
+          {/* <Board {...this.props} /> */}
           asdf
         </FrameOuter>
         <FrameOuter
@@ -73,7 +73,7 @@ class Frame extends React.Component {
           pose={this.state.pose}
           onPoseComplete={() => log('pose updated')}
         >
-          <Board {...this.props} />
+          {/* <Board {...this.props} /> */}
           asdf
         </FrameOuter>
       </React.Fragment>

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { compose } from 'redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled, { ThemeProvider } from 'styled-components';
@@ -16,15 +16,11 @@ import { playerTheme } from 'tools/theme';
 import injectSaga from 'utils/injectSaga';
 import Keyboard from 'containers/Keyboard';
 import injectReducer from 'utils/injectReducer';
-import {
-  makeSelectInitC,
-  makeSelectLines,
-  makeSelectKeyWidth,
-} from 'containers/Keyboard/selectors';
+import { boardLinesPropType } from 'components/Board';
 
 import saga from './saga';
 import reducer from './reducer';
-import makeSelectPlayerView, { makeSelectNotes } from './selectors';
+import makeSelectPlayerView, { makeSelectBoardLines } from './selectors';
 
 const PlayerViewOuter = styled.div`
   width: 100%;
@@ -57,8 +53,6 @@ export class PlayerView extends React.Component {
   state = { opened: true };
 
   render() {
-    const { initC, lines, keyWidth, playerview } = this.props;
-
     return (
       <ThemeProvider theme={playerTheme}>
         <PlayerViewOuter opened={this.state.opened}>
@@ -92,12 +86,7 @@ export class PlayerView extends React.Component {
               </nav>
             </BarWrapper>
             <Frames>
-              <Frame
-                initC={initC}
-                lines={lines}
-                keyWidth={keyWidth}
-                measures={playerview.midiData}
-              />
+              <Frame boardLines={this.props.boardLines} />
             </Frames>
             <Keyboard />
           </PlayerViewInner>
@@ -108,19 +97,11 @@ export class PlayerView extends React.Component {
 }
 
 PlayerView.propTypes = {
-  lines: PropTypes.any,
-  initC: PropTypes.number,
-  // notes: PropTypes.object,
-  keyWidth: PropTypes.number,
-  // measureData: PropTypes.object,
-  // dispatch: PropTypes.func.isRequired,
+  boardLines: boardLinesPropType,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // notes: makeSelectNotes(),
-  initC: makeSelectInitC(),
-  lines: makeSelectLines(),
-  keyWidth: makeSelectKeyWidth(),
+  boardLines: makeSelectBoardLines(),
   playerview: makeSelectPlayerView(),
 });
 
