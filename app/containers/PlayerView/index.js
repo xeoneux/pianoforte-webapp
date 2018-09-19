@@ -18,8 +18,8 @@ import Keyboard from 'containers/Keyboard';
 import injectReducer from 'utils/injectReducer';
 import {
   makeSelectInitC,
-  makeSelectKeyWidth,
   makeSelectLines,
+  makeSelectKeyWidth,
 } from 'containers/Keyboard/selectors';
 
 import saga from './saga';
@@ -57,7 +57,7 @@ export class PlayerView extends React.Component {
   state = { opened: true };
 
   render() {
-    const { initC, lines, keyWidth } = this.props;
+    const { initC, lines, keyWidth, playerview } = this.props;
 
     return (
       <ThemeProvider theme={playerTheme}>
@@ -92,7 +92,12 @@ export class PlayerView extends React.Component {
               </nav>
             </BarWrapper>
             <Frames>
-              <Frame initC={initC} lines={lines} keyWidth={keyWidth} />
+              <Frame
+                initC={initC}
+                lines={lines}
+                keyWidth={keyWidth}
+                measures={playerview.midiData}
+              />
             </Frames>
             <Keyboard />
           </PlayerViewInner>
@@ -105,13 +110,14 @@ export class PlayerView extends React.Component {
 PlayerView.propTypes = {
   lines: PropTypes.any,
   initC: PropTypes.number,
+  // notes: PropTypes.object,
   keyWidth: PropTypes.number,
   // measureData: PropTypes.object,
   // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  notes: makeSelectNotes(),
+  // notes: makeSelectNotes(),
   initC: makeSelectInitC(),
   lines: makeSelectLines(),
   keyWidth: makeSelectKeyWidth(),

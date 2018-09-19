@@ -10,8 +10,9 @@ import posed from 'react-pose';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Board from 'components/Board';
+import Measure from 'components/Measure';
 import { playerTheme } from 'tools/theme';
-import Board from '../Board';
 
 const log = debug('frame:main');
 
@@ -36,12 +37,6 @@ const FrameOuter = styled(FrameInner)`
 class Frame extends React.Component {
   state = { pose: 'begin' };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ pose: 'end' });
-    }, 2000);
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -52,6 +47,15 @@ class Frame extends React.Component {
           onPoseComplete={() => log('pose updated')}
         >
           <Board {...this.props} />
+          <Measure
+            keyWidth={this.props.keyWidth}
+            tracks={
+              this.props.measures &&
+              this.props.measure.notes.map(track =>
+                track.filter(note => note.measure.index === 0),
+              )
+            }
+          />
           asdf
         </FrameOuter>
         <FrameOuter
