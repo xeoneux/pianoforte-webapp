@@ -13,9 +13,9 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 
-import Key from './Key';
+import PianoKey from './PianoKey';
 import reducer from './reducer';
-import makeSelectKeyboard, { selectKeyWidth } from './selectors';
+import { selectPianoKeys } from './selectors';
 
 const KeyboardWrapper = styled.div`
   bottom: 0;
@@ -26,36 +26,32 @@ const KeyboardWrapper = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class Keyboard extends React.Component {
-  shouldComponentUpdate() {
-    return false;
-  }
-
   render() {
     return (
       <KeyboardWrapper>
-        {this.props.keyboard.keys.map((key, index) => (
-          <Key
-            index={index}
-            key={key.note}
-            type={key.type}
-            position={key.position}
-            keyWidth={this.props.keyWidth}
-          />
+        {this.props.keys.map(pianoKey => (
+          <PianoKey key={pianoKey.note} {...pianoKey} />
         ))}
       </KeyboardWrapper>
     );
   }
 }
 
+const pianoKeyPropType = PropTypes.shape({
+  key: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired,
+});
+
+export const pianoKeysPropType = PropTypes.arrayOf(pianoKeyPropType).isRequired;
+
 Keyboard.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
-  keyboard: PropTypes.object.isRequired,
-  keyWidth: PropTypes.number.isRequired,
+  keys: pianoKeysPropType,
 };
 
 const mapStateToProps = createStructuredSelector({
-  keyWidth: selectKeyWidth,
-  keyboard: makeSelectKeyboard(),
+  keys: selectPianoKeys,
 });
 
 function mapDispatchToProps(dispatch) {

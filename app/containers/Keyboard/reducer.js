@@ -5,6 +5,9 @@
  */
 
 import { Map } from 'immutable';
+
+import { playerTheme } from 'tools/theme';
+
 import { DEFAULT_ACTION } from './constants';
 
 export const keyboardTypes = {
@@ -18,7 +21,7 @@ export const keyboardTypes = {
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
 export const generateKeys = keyboardType => {
-  const keys = [];
+  const pianoKeys = [];
   const blackKeys = [];
   const whiteKeys = [];
 
@@ -28,18 +31,33 @@ export const generateKeys = keyboardType => {
     const type = name.includes('#') ? 'black' : 'white';
     const position = type === 'black' ? blackKeys.length : whiteKeys.length;
 
-    const key = { note, name, type, position };
+    const pianoKey = { note, name, type, position };
 
-    keys.push(key);
-
-    if (type === 'black') blackKeys.push(key);
-    else if (type === 'white') whiteKeys.push(key);
+    pianoKeys.push(pianoKey);
+    if (type === 'black') blackKeys.push(pianoKey);
+    else if (type === 'white') whiteKeys.push(pianoKey);
   }
 
-  return keys;
+  const whiteKeyWidth = 100 / whiteKeys.length;
+  const blackKeyWidth = whiteKeyWidth * playerTheme.crossWidthRatio;
+
+  return pianoKeys.map((pianoKey, index) => {
+    const newPianoKey = pianoKey;
+    if (pianoKey.type === 'white') {
+      newPianoKey.width = whiteKeyWidth;
+      newPianoKey.offset = pianoKey.position * whiteKeyWidth;
+    } else {
+      newPianoKey.width = blackKeyWidth;
+      newPianoKey.offset =
+        (index - pianoKey.position - 1) * whiteKeyWidth +
+        (whiteKeyWidth - blackKeyWidth / 2);
+    }
+
+    return newPianoKey;
+  });
 };
 
-const defaultKeyboard = keyboardTypes.$88;
+const defaultKeyboard = keyboardTypes.$76;
 
 export const initialState = Map({
   type: defaultKeyboard,

@@ -19,7 +19,7 @@ const Line = styled.div`
   height: 100%;
   margin-left: -1px;
   position: absolute;
-  left: ${({ left }) => left}vw;
+  left: ${({ offset }) => offset}vw;
   border-left: ${({ width }) => width}px solid #5a5a5a;
 `;
 
@@ -31,13 +31,14 @@ function Board({ boardLines }) {
   );
 }
 
-export const boardLinesPropType = PropTypes.arrayOf(
-  PropTypes.shape({
-    key: PropTypes.number.isRequired,
-    left: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-  }),
-).isRequired;
+const boardLinePropType = PropTypes.shape({
+  key: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired,
+});
+
+export const boardLinesPropType = PropTypes.arrayOf(boardLinePropType)
+  .isRequired;
 
 Board.propTypes = {
   boardLines: boardLinesPropType,
