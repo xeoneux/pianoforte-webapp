@@ -10,27 +10,22 @@ import styled from 'styled-components';
 
 const Note = styled.div`
   position: absolute;
-  border-radius: 5px;
-  width: ${({ keyWidth }) => keyWidth}vw;
-  background-color: ${({ color }) => (color === 0 ? 'red' : 'pink')};
-  top: ${({ note, theme }) =>
-    theme.singleFrameHeight -
-    (note.to * theme.singleFrameHeight) / note.measure.to}vh;
-  left: ${({ note, theme }) =>
-    theme.singleFrameHeight -
-    (note.to * theme.singleFrameHeight) / note.measure.to}vh;
-  height: ${({ note, theme }) =>
-    ((note.to - note.from) * theme.singleFrameHeight) /
-    (note.measure.to - note.measure.from)}vh;
+  top: ${({ top }) => top}%;
+  width: ${({ width }) => width}vw;
+  left: ${({ offset }) => offset}vw;
+  height: ${({ height }) => height}%;
+  background-color: ${({ color }) => color};
+  border-top-left-radius: ${({ post }) => (post === 'complete' ? 5 : 0)}px;
+  border-top-right-radius: ${({ post }) => (post === 'complete' ? 5 : 0)}px;
+  border-bottom-left-radius: ${({ pre }) => (pre === 'complete' ? 5 : 0)}px;
+  border-bottom-right-radius: ${({ pre }) => (pre === 'complete' ? 5 : 0)}px;
 `;
 
-function Measure({ tracks, keyWidth }) {
-  console.log(tracks);
+function Measure({ measure }) {
   return (
-    tracks &&
-    tracks.map((notes, track) =>
-      notes.map(note => <Note note={note} color={track} keyWidth={keyWidth} />),
-    )
+    <React.Fragment>
+      {measure && measure.map((note, index) => <Note key={index} {...note} />)}
+    </React.Fragment>
   );
 }
 

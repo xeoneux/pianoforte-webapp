@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { compose } from 'redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled, { ThemeProvider } from 'styled-components';
@@ -20,7 +20,7 @@ import { boardLinesPropType } from 'components/Board';
 
 import saga from './saga';
 import reducer from './reducer';
-import makeSelectPlayerView, { makeSelectBoardLines } from './selectors';
+import { makeSelectBoardLines, makeSelectMeasureData } from './selectors';
 
 const PlayerViewOuter = styled.div`
   width: 100%;
@@ -86,7 +86,10 @@ export class PlayerView extends React.Component {
               </nav>
             </BarWrapper>
             <Frames>
-              <Frame boardLines={this.props.boardLines} />
+              <Frame
+                boardLines={this.props.boardLines}
+                measureData={this.props.measureData}
+              />
             </Frames>
             <Keyboard />
           </PlayerViewInner>
@@ -97,12 +100,13 @@ export class PlayerView extends React.Component {
 }
 
 PlayerView.propTypes = {
+  measureData: PropTypes.array,
   boardLines: boardLinesPropType,
 };
 
 const mapStateToProps = createStructuredSelector({
   boardLines: makeSelectBoardLines(),
-  playerview: makeSelectPlayerView(),
+  measureData: makeSelectMeasureData(),
 });
 
 function mapDispatchToProps(dispatch) {

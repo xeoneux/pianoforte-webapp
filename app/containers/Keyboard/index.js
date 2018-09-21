@@ -38,9 +38,8 @@ export class Keyboard extends React.Component {
 }
 
 const pianoKeyPropType = PropTypes.shape({
-  key: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
   offset: PropTypes.number.isRequired,
 });
 

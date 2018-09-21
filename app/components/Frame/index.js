@@ -37,45 +37,26 @@ const FrameOuter = styled(FrameInner)`
 class Frame extends React.Component {
   state = { pose: 'begin' };
 
+  componentDidMount() {
+    setTimeout(() => this.setState({ pose: 'end' }), 3000);
+  }
+
   render() {
     return (
       <React.Fragment>
-        <FrameOuter
-          idx={1}
-          onValueChange={{}}
-          pose={this.state.pose}
-          onPoseComplete={() => log('pose updated')}
-        >
-          <Board {...this.props} />
-          {/* <Measure
-            keyWidth={this.props.keyWidth}
-            tracks={
-              this.props.measures &&
-              this.props.measure.notes.map(track =>
-                track.filter(note => note.measure.index === 0),
-              )
-            }
-          /> */}
-          asdf
-        </FrameOuter>
-        <FrameOuter
-          idx={2}
-          onValueChange={{}}
-          pose={this.state.pose}
-          onPoseComplete={() => log('pose updated')}
-        >
-          {/* <Board {...this.props} /> */}
-          asdf
-        </FrameOuter>
-        <FrameOuter
-          idx={3}
-          onValueChange={{}}
-          pose={this.state.pose}
-          onPoseComplete={() => log('pose updated')}
-        >
-          {/* <Board {...this.props} /> */}
-          asdf
-        </FrameOuter>
+        {this.props.measureData &&
+          this.props.measureData.map((measure, index) => (
+            <FrameOuter
+              idx={index}
+              key={measure.index}
+              onValueChange={{}}
+              pose={this.state.pose}
+              onPoseComplete={() => log('pose updated')}
+            >
+              <Board {...this.props} />
+              <Measure measure={measure} />
+            </FrameOuter>
+          ))}
       </React.Fragment>
     );
   }
