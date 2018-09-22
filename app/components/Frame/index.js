@@ -38,7 +38,7 @@ class Frame extends React.Component {
   state = { pose: 'begin' };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ pose: 'end' }), 3000);
+    // setTimeout(() => this.setState({ pose: 'end' }), 3000);
   }
 
   render() {

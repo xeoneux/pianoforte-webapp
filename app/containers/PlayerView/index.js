@@ -26,7 +26,7 @@ const PlayerViewOuter = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  transition: top 0.3s;
+  transition: top 0.3s ease;
   top: ${props => (props.opened ? 0 : 85)}vh;
 `;
 
@@ -59,32 +59,7 @@ export class PlayerView extends React.Component {
           <PlayerViewInner>
             <BarWrapper
               onClick={() => this.setState({ opened: !this.state.opened })}
-            >
-              <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/">
-                  Navbar
-                </a>
-                <div className="collapse navbar-collapse">
-                  <ul className="navbar-nav ml-auto">
-                    <li className="nav-item active">
-                      <a className="nav-link" href="/">
-                        Home <span className="sr-only">(current)</span>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/">
-                        Link
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link disabled" href="/">
-                        Disabled
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-            </BarWrapper>
+            />
             <Frames>
               <Frame
                 boardLines={this.props.boardLines}

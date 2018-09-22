@@ -13,6 +13,7 @@ const BoardWrapper = styled.div`
   height: 100%;
   position: relative;
   background-color: #303030;
+  border-top: 1px solid #5a5a5a;
 `;
 
 const Line = styled.div`
