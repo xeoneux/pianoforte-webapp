@@ -7,7 +7,7 @@
 import debug from 'debug';
 import React from 'react';
 import posed from 'react-pose';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Board from 'components/Board';
@@ -62,6 +62,8 @@ class Frame extends React.Component {
   }
 }
 
-Frame.propTypes = {};
+Frame.propTypes = {
+  measureData: PropTypes.array,
+};
 
 export default Frame;

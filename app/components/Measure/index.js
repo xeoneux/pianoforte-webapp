@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Note = styled.div`
@@ -22,13 +22,20 @@ const Note = styled.div`
 `;
 
 function Measure({ measure }) {
+  // eslint-disable-next-line no-alert
   return (
     <React.Fragment>
-      {measure && measure.map((note, index) => <Note key={index} {...note} />)}
+      {measure &&
+        measure.map((note, index) => (
+          /* eslint-disable-next-line */
+          <Note key={index} {...note} />
+        ))}
     </React.Fragment>
   );
 }
 
-Measure.propTypes = {};
+Measure.propTypes = {
+  measure: PropTypes.array,
+};
 
 export default Measure;
