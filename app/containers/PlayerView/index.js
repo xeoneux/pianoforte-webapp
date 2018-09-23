@@ -50,7 +50,7 @@ const Frames = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class PlayerView extends React.Component {
-  state = { opened: true };
+  state = { opened: false };
 
   render() {
     return (

@@ -6,6 +6,7 @@
 
 import debug from 'debug';
 import React from 'react';
+import { Flex } from 'rebass';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
@@ -14,7 +15,9 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { createStructuredSelector } from 'reselect';
 
+import SideBar from 'components/SideBar';
 import injectSaga from 'utils/injectSaga';
+import BodyArea from 'components/BodyArea';
 import injectReducer from 'utils/injectReducer';
 import PlayerView from 'containers/PlayerView/Loadable';
 import { loadMidi } from 'containers/PlayerView/actions';
@@ -32,8 +35,9 @@ const AppPageWrapper = styled(Dropzone)`
   position: relative;
 `;
 
-const HeaderWrapper = styled.div`
-  height: 15vh;
+const MainWrapper = styled(Flex)`
+  width: 100%;
+  height: 100%;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -56,7 +60,10 @@ export class AppPage extends React.Component {
           <title>AppPage</title>
           <meta name="description" content="Description of AppPage" />
         </Helmet>
-        <HeaderWrapper />
+        <MainWrapper>
+          <SideBar />
+          <BodyArea />
+        </MainWrapper>
         <PlayerView />
       </AppPageWrapper>
     );
