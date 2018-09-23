@@ -5,24 +5,33 @@
  */
 
 import React from 'react';
-import { Card } from 'rebass';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const SongCardWrapper = styled(Card)`
+const SongCardWrapper = styled.div`
   width: 15vw;
   height: 15vw;
-  margin: 0 15px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 30px;
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(${({ url }) => url});
+
+  ::before {
+    bottom: 0;
+    width: 100%;
+    height: 33%;
+    content: '';
+    opacity: 0.3;
+    position: absolute;
+    background-color: black;
+  }
 `;
 
-function SongCard() {
-  return (
-    <SongCardWrapper
-      bg="red"
-      borderRadius={30}
-      backgroundImage="https://loremflickr.com/320/240"
-    />
-  );
+function SongCard(props) {
+  return <SongCardWrapper {...props} />;
 }
 
 SongCard.propTypes = {};
