@@ -5,12 +5,32 @@
  */
 
 import React from 'react';
-import { Box } from 'rebass';
+import { Flex } from 'rebass';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+
+import SongCard from 'components/SongCard';
+
+const BodyAreaWrapper = styled(Flex)`
+  padding: 0 5vw;
+`;
+
+const SongCardZone = styled(Flex)``;
 
 function BodyArea() {
-  return <Box width={1} bg="#f5f5f5" />;
+  return (
+    <BodyAreaWrapper width={5 / 6} bg="#f5f5f5">
+      asdf
+      <SongCardZone>
+        <SongCard />
+        <SongCard />
+        <SongCard />
+        <SongCard />
+        <SongCard />
+        <SongCard />
+      </SongCardZone>
+    </BodyAreaWrapper>
+  );
 }
 
 BodyArea.propTypes = {};
