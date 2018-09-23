@@ -14,19 +14,33 @@ const SongCardWrapper = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 30px;
-  background-size: auto;
-  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${({ url }) => url});
 
+  :hover {
+    cursor: pointer;
+  }
+
   ::before {
     bottom: 0;
-    width: 100%;
     height: 33%;
     content: '';
-    opacity: 0.3;
+    width: inherit;
+    filter: blur(6px);
     position: absolute;
-    background-color: black;
+    background: inherit;
+    background-position: 0 100%;
+  }
+
+  ::after {
+    bottom: 0;
+    height: 33%;
+    content: '';
+    opacity: 0.6;
+    width: inherit;
+    position: absolute;
+    background-color: white;
   }
 `;
 

@@ -24,12 +24,12 @@ const BodyTitle = styled.h1`
 `;
 
 const songCards = [
-  <SongCard url="https://loremflickr.com/500/500" />,
-  <SongCard url="https://loremflickr.com/400/400" />,
-  <SongCard url="https://loremflickr.com/300/300" />,
-  <SongCard url="https://loremflickr.com/600/600" />,
-  <SongCard url="https://loremflickr.com/700/700" />,
-  <SongCard url="https://loremflickr.com/200/200" />,
+  <SongCard url="https://placeimg.com/500/500/any" />,
+  <SongCard url="https://placeimg.com/400/400/any" />,
+  <SongCard url="https://placeimg.com/300/300/any" />,
+  <SongCard url="https://placeimg.com/600/600/any" />,
+  <SongCard url="https://placeimg.com/700/700/any" />,
+  <SongCard url="https://placeimg.com/200/200/any" />,
 ];
 function BodyArea() {
   return (
