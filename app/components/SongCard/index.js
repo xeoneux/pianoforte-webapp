@@ -11,12 +11,14 @@ import styled from 'styled-components';
 const SongCardWrapper = styled.div`
   width: 15vw;
   height: 15vw;
+  margin: 15px 0;
   overflow: hidden;
   position: relative;
   border-radius: 30px;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${({ url }) => url});
+  box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.1);
 
   :hover {
     cursor: pointer;
