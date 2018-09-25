@@ -6,7 +6,6 @@
 
 import debug from 'debug';
 import React from 'react';
-import { Flex } from 'rebass';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
@@ -35,9 +34,10 @@ const AppPageWrapper = styled(Dropzone)`
   position: relative;
 `;
 
-const MainWrapper = styled(Flex)`
+const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
 `;
 
 /* eslint-disable react/prefer-stateless-function */

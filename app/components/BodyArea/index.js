@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { Flex } from 'rebass';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AliceCarousel from 'react-alice-carousel';
@@ -15,7 +14,8 @@ import SongList from 'components/SongList';
 
 import 'react-alice-carousel/lib/alice-carousel.css';
 
-const BodyAreaWrapper = styled(Flex)`
+const BodyAreaWrapper = styled.div`
+  display: flex;
   color: #152334;
   padding-left: 5vw;
 `;

@@ -8657,12 +8657,6 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
-rebass@3.0.0-9:
-  version "3.0.0-9"
-  resolved "https://registry.yarnpkg.com/rebass/-/rebass-3.0.0-9.tgz#86da0b51c4c509270a57746464a4aac0c5a168ac"
-  dependencies:
-    styled-system "^3.1.4"
-
 recast@~0.11.12:
   version "0.11.23"
   resolved "https://registry.yarnpkg.com/recast/-/recast-0.11.23.tgz#451fd3004ab1e4df9b4e4b66376b2a21912462d3"
@@ -9661,12 +9655,6 @@ styled-components@3.3.2:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^3.2.3"
-
-styled-system@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-3.1.4.tgz#d3cc0cfea91273c39f06af5eaaaa2decf84506c0"
-  dependencies:
-    prop-types "^15.6.2"
 
 stylefire@^2.0.7:
   version "2.1.0"

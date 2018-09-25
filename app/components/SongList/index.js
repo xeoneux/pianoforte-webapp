@@ -5,11 +5,12 @@
  */
 
 import React from 'react';
-import { Flex } from 'rebass';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const SongListWrapper = styled(Flex)``;
+const SongListWrapper = styled.div`
+  display: flex;
+`;
 
 const SongListItem = styled.li`
   width: 64vw;
