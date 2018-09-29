@@ -14,9 +14,8 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { createStructuredSelector } from 'reselect';
 
-import SideBar from 'components/SideBar';
 import injectSaga from 'utils/injectSaga';
-import BodyArea from 'components/BodyArea';
+import MainView from 'containers/MainView';
 import injectReducer from 'utils/injectReducer';
 import PlayerView from 'containers/PlayerView/Loadable';
 import { loadMidi } from 'containers/PlayerView/actions';
@@ -34,13 +33,6 @@ const AppPageWrapper = styled(Dropzone)`
   position: relative;
 `;
 
-const MainWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
-
-/* eslint-disable react/prefer-stateless-function */
 export class AppPage extends React.Component {
   onDrop = files => {
     if (files.length) {
@@ -60,10 +52,7 @@ export class AppPage extends React.Component {
           <title>AppPage</title>
           <meta name="description" content="Description of AppPage" />
         </Helmet>
-        <MainWrapper>
-          <SideBar />
-          <BodyArea />
-        </MainWrapper>
+        <MainView />
         <PlayerView />
       </AppPageWrapper>
     );
