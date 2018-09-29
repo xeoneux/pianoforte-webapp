@@ -70,3 +70,9 @@
 @import '~@creative-tim-official/argon-dashboard-free/assets/scss/custom/separator';
 @import '~@creative-tim-official/argon-dashboard-free/assets/scss/custom/tables';
 @import '~@creative-tim-official/argon-dashboard-free/assets/scss/custom/type';
+
+// Temporary overrides...
+.navbar-search .input-group {
+  border: unset;
+  border-radius: 0.375rem;
+}
