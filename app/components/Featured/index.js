@@ -20,7 +20,7 @@ const cards = [
 
 function Featured() {
   return (
-    <div className="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div className="header bg-gradient-primary pb-8 pt-4 pt-md-7">
       <div className="container-fluid">
         <div className="header-body">
           {/* <!-- Card stats --> */}

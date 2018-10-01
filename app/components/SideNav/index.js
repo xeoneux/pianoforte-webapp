@@ -27,7 +27,7 @@ function SideNav() {
           <span className="navbar-toggler-icon" />
         </button>
         {/* <!-- Brand --> */}
-        <a className="navbar-brand pt-0" href="/">
+        <a className="navbar-brand py-0" href="/">
           <img src={logo} alt="Pianoforte Logo" className="navbar-brand-img" />
         </a>
         {/* <!-- User --> */}
